@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import tmdbService from "../services/tmdbService";
+import { Link } from "react-router-dom";
 
 interface Movie {
   id: number;
@@ -27,7 +28,9 @@ const Home: React.FC = () => {
       <h2>Upcoming Movies</h2>
       <ul>
         {upcomingMovies.map((movie) => (
-          <li key={movie.id}>{movie.title}</li>
+          <Link to={`/movie/${movie.id}`}>
+            <li key={movie.id}>{movie.title}</li>
+          </Link>
         ))}
       </ul>
     </div>
