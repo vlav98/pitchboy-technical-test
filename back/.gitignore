@@ -1,0 +1,13 @@
+node_modules/
+.node_modules/
+build.json
+*.config
+**/.DS_Store
+.settings
+.idea
+yarn.lock
+yarn-error.log
+.failed-tests
+TEST-results.xml
+.eslintcache
+/lib/
