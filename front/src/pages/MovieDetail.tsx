@@ -4,33 +4,30 @@ import tmdbService from "../services/tmdbService";
 interface Movie {
   id: number;
   title: string;
+  overview?: string;
 }
 
 const MovieDetail: React.FC = () => {
-  const [upcomingMovies, setUpcomingMovies] = useState<Movie[]>([]);
+  const [movieDetails, setMovieDetails] = useState<Movie>();
 
   useEffect(() => {
-    const fetchUpcomingMovies = async () => {
+    const fetchMovieDetails = async () => {
       try {
         // eslint-disable-next-line no-template-curly-in-string
         const response = await tmdbService.get("/movie/${id}");
-        setUpcomingMovies(response.data.results);
+        setMovieDetails(response.data.results);
       } catch (error) {
-        console.error("Error fetching upcoming movies:", error);
+        console.error("Error fetching movie details:", error);
       }
     };
 
-    fetchUpcomingMovies();
+    fetchMovieDetails();
   }, []);
 
   return (
     <div>
-      <h2>Upcoming Movies</h2>
-      <ul>
-        {upcomingMovies.map((movie) => (
-          <li key={movie.id}>{movie.title}</li>
-        ))}
-      </ul>
+      <h2>{movieDetails?.title}</h2>
+      <p>{movieDetails?.overview}</p>
     </div>
   );
 };
